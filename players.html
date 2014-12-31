@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Players List | KingTomato.github.io</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">KingTomato</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Home <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="index.html#game">Game</a></li>
+                <li><a href="index.html#scripts">Scripts</a></li>
+                <li><a href="index.html#resx">Resources</a></li>
+                <li class="divider"></li>
+                <li><a href="index.html#appendix">Appendix</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="players.html">Players</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+  
+    <div class="container" style="margin-top:30px;">
+    
+      <div class="jumbotron">
+        <h1>Who is that?</h1>
+        <p>
+          Want to know who you're talking to? Well too bad, I can't work miracles. But you can figure it out yourself
+          using the information below.
+        </p>
+      </div>
+      
+      <!-- Game -->
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="scripts" class="page-header">Players <small>Who are all these people?</small></h1>
+        </div>
+        <!-- ko foreach: players -->
+        <div class="col-md-4">
+          <div class="media">
+            <a href="#" class="media-left">
+              <img src="http://placehold.it/64" alt="">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading" data-bind="text:name">Unknown</h4>
+              <p data-bind="text:handle">Unnamed</p>
+            </div>
+          </div>
+        </div>
+        <!-- /ko -->
+      </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootlint/0.9.0/bootlint.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+    <script>
+      var players = [
+        ['Adrian S',      'the|Pain'],
+        ['Alex M',        'Corvolt, Copeland'], // suit & tie
+        ['Antonius H',    '$alvaTion'],
+        ['Brad C',        'KingTomato'],
+        ['David T',       'ReAcT'],
+        ['Delon B',       '25*To*Life, slugger, whoshotya'],
+        ['Jeff C',        'Architect'],
+        ['Kamil L',       'Vaio, Y()Da'],
+        ['Larry H',       'Flathead, Gundam', '(tN)'],
+        ['Ruben R',       'RaDeN'],
+        ['Scott T',       'Luc1f3r'],
+        ['Sean B',        'HiTMaN'],
+        ['Steve',         'TacticaL, L!nuX, FausT', 'NL'],
+        ['Suchit',        'Thug'],
+        ['Troy P',        'Scorpius'],
+        ['Zach T',        'Indo'],
+      ];
+      
+      var Player = function(handle,name){
+        var self = this;
+        
+        self.handle = ko.observable(handle || 'Unknown');
+        self.name   = ko.observable(name || 'Unknown');
+      };
+      
+      var App = function(players){
+        var self = this;
+        
+        self.players = ko.observableArray(players);
+      };
+      ko.applyBindings(new App(players.map(function(p){ return new Player(p[1],p[0]); })));
+    </script>
+  </body>
+</html>

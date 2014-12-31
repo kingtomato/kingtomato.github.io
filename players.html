@@ -78,7 +78,8 @@
             </a>
             <div class="media-body">
               <h4 class="media-heading" data-bind="text:name">Unknown</h4>
-              <p data-bind="text:handle">Unnamed</p>
+              <p data-bind="text:handle" style="margin-bottom:0;">Unnamed</p>
+              <p class="text-muted" data-bind="text:clan"></p>
             </div>
           </div>
         </div>
@@ -95,26 +96,28 @@
         ['Adrian S',      'the|Pain'],
         ['Alex M',        'Corvolt, Copeland'], // suit & tie
         ['Antonius H',    '$alvaTion'],
-        ['Brad C',        'KingTomato'],
-        ['David T',       'ReAcT'],
+        ['Brad C',        'KingTomato', 'GoDz'],
+        ['David T',       'ReAcT', 'GoDz'],
         ['Delon B',       '25*To*Life, slugger, whoshotya'],
         ['Jeff C',        'Architect'],
         ['Kamil L',       'Vaio, Y()Da'],
-        ['Larry H',       'Flathead, Gundam', '(tN)'],
+        ['Larry H',       'Flathead', '(tN)'],
         ['Ruben R',       'RaDeN'],
         ['Scott T',       'Luc1f3r'],
         ['Sean B',        'HiTMaN'],
         ['Steve',         'TacticaL, L!nuX, FausT', 'NL'],
         ['Suchit',        'Thug'],
-        ['Troy P',        'Scorpius'],
-        ['Zach T',        'Indo'],
+        ['Tom L',         'Gundam', '(tN)'],
+        ['Troy P',        'Scorpius', 'GoDz'],
+        ['Zach T',        'Indo', 'GoDz'],
       ];
       
-      var Player = function(handle,name){
+      var Player = function(handle,name,clan){
         var self = this;
         
         self.handle = ko.observable(handle || 'Unknown');
         self.name   = ko.observable(name || 'Unknown');
+        self.clan   = ko.observable(clan || '\xA0');
       };
       
       var App = function(players){
@@ -122,7 +125,7 @@
         
         self.players = ko.observableArray(players);
       };
-      ko.applyBindings(new App(players.map(function(p){ return new Player(p[1],p[0]); })));
+      ko.applyBindings(new App(players.map(function(p){ return new Player(p[1],p[0],p.length > 2 ? p[2] : undefined); })));
     </script>
   </body>
 </html>

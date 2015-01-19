@@ -54,9 +54,9 @@
       </div>
       <!-- /.container -->
     </nav>
-  
+
     <div class="container" style="margin-top:30px;">
-    
+
       <div class="jumbotron">
         <h1>Who is that?</h1>
         <p>
@@ -64,7 +64,7 @@
           using the information below.
         </p>
       </div>
-      
+
       <!-- Game -->
       <div class="row">
         <div class="col-md-12">
@@ -99,6 +99,7 @@
         ['Arthur Z',      'Clayman'],
         ['Brad C',        'KingTomato', 'GoDz'],
         ['Calvin W',      'Rocky', '(tN)'],
+        ['Chris M',       '-Vag/Dis-', '|!i!PBP|'],
         ['David T',       'ReAcT', 'GoDz'],
         ['Delon B',       '25*To*Life, slugger, whoshotya'],
         ['Jeff C',        'Architect'],
@@ -115,26 +116,26 @@
         ['Tom L',         'Gundam', '(tN)'],
         ['Troy P',        'Scorpius', 'GoDz'],
         ['Zach T',        'Indo', 'GoDz'],
-        
-        
+
+
         ['???',           'Y()Da'],
         ['???',           'C05!NE'],
         ['???',           'RockyTop', '(tN)'],
         ['???',           'Leathermen', '(tN)'],
         ['???',           'Stinkysock', '(tN)'],
       ];
-      
+
       var Player = function(handle,name,clan){
         var self = this;
-        
+
         self.handle = ko.observable(handle || '???');
         self.name   = ko.observable(name || '???');
         self.clan   = ko.observable(clan || '\xA0');
       };
-      
+
       var App = function(players){
         var self = this;
-        
+
         self.players = ko.observableArray(players);
       };
       ko.applyBindings(new App(players.map(function(p){ return new Player(p[1],p[0],p.length > 2 ? p[2] : undefined); })));
